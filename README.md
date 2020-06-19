@@ -24,6 +24,8 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+
+
 # Тестовое задание Vue.js
 
 Необходимо реализовать табличный компонент, с помощью которого пользователь сможет подобрать продукты по различным параметрам.
