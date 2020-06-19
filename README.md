@@ -1,5 +1,4 @@
-# product-table
-App loads data from products.json.
+# App loads data from products.json.
 Vue + Vuex + Vuetify. 
 
 ## Project setup
