@@ -24,9 +24,9 @@
       <v-layout align-center>
         <v-menu>
           <template v-slot:activator="{ on }">
-            <v-btn small color="success" v-on="on" :disabled="selectedProducts.length === 0">
+            <v-btn small color="success" v-on="on" :disabled="selecteditems.length === 0">
               Delete
-              <span v-if="selectedProducts.length !== 0">({{ selectedProducts.length }})</span>
+              <span v-if="selecteditems.length !== 0">({{ selecteditems.length }})</span>
             </v-btn>
           </template>
           <v-card>
@@ -38,7 +38,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn depressed>Cancel</v-btn>
-              <v-btn depressed color="success" @click="deleteProducts(selectedProducts)">Confirm</v-btn>
+              <v-btn depressed color="success" @click="deleteitems(selecteditems)">Confirm</v-btn>
             </v-card-actions>
           </v-card>
         </v-menu>
@@ -74,9 +74,9 @@
 
     <v-data-table
       :headers="selectedObj"
-      :items="products"
+      :items="items"
       select-all
-      v-model="selectedProducts"
+      v-model="selecteditems"
       item-key="id"
       disable-items-per-page="true"
     >
@@ -110,7 +110,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn flat>Cancel</v-btn>
-                  <v-btn color="error" flat @click="deleteProducts(props.item)">Confirm</v-btn>
+                  <v-btn color="error" flat @click="deleteitems(props.item)">Confirm</v-btn>
                 </v-card-actions>
               </v-card>
             </v-menu>
@@ -130,7 +130,7 @@
 import { mapActions, mapMutations, mapState } from "vuex";
 export default {
   props: {
-    products: {
+    items: {
       type: Array,
       default: () => []
     }
@@ -138,20 +138,15 @@ export default {
   data: () => ({
     errorSnackbar: false, // tag to show snackBar
     headersData: [
-      {
-        text: "Product (100g serving)",
-        align: "left",
-        value: "product"
-      },
-      { text: "Calories", value: "calories" },
-      { text: "Fat (g)", value: "fat" },
-      { text: "Carbs (g)", value: "carbs" },
-      { text: "Protein (g)", value: "protein" },
-      { text: "Iron (%)", value: "iron" },
+      { text: "Name", value: "name" },
+      { text: "Date", value: "date" },
+      { text: "Days", value: "days" },
+      { text: "Mission", value: "mission" },
+      { text: "isMultiple", value: "isMultiple" },
       { text: "", value: "", sortable: false }
     ], // default headers data with parameters
-    selected: ["product", "calories", "fat", "carbs", "protein", "iron"], // selected headers data (which is shown)
-    selectedProducts: [] // selected deserts to delete
+    selected: ["name", "date", "days", "mission", "isMultiple"], // selected headers data (which is shown)
+    selecteditems: [] // selected deserts to delete
   }),
   computed: {
     selectedObj: function() {
@@ -204,8 +199,8 @@ export default {
       let deletedElem = this.selected.splice(index, 1);
       this.selected.unshift(deletedElem[0]);
     },
-    // deleteProducts - call server to delete product
-    ...mapActions(["deleteProducts"]),
+    // deleteitems - call server to delete product
+    ...mapActions(["deleteitems"]),
     // setDeletingError - set deleting error in Vuex
     ...mapMutations(["setDeletingError"])
   },

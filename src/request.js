@@ -1,4 +1,6 @@
-import products from './products.json'
+// import items from './items.json'
+import items from './raidix.json'
+
 /** True = 65%, False = 35% */
 
 const chanceOfError = 35/100; // no magic numbers
@@ -15,7 +17,7 @@ export const emulateGetRequest = () => new Promise((resolve, reject) => {
     })
   }
   const delay = parseInt( Math.random() * 1000 )
-  setTimeout(() => { resolve(products) }, delay)
+  setTimeout(() => { resolve(items) }, delay)
 })
 
 /** Emuate delete request */

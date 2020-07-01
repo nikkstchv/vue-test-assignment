@@ -11,13 +11,13 @@
           <v-btn small
                  outline
                  color="info"
-                 @click="getProducts()">
+                 @click="getitems()">
             Try
           </v-btn>
         </v-alert>
       </div>
       <div v-else>
-        <ProductTable v-if="loaded" :products="products"/>
+        <ProductTable v-if="loaded" :items="items"/>
         <div class="text-xs-center" v-else>
           <v-progress-circular
             :size="100"
@@ -42,13 +42,13 @@ export default {
   },
   data: () => ({}),
   computed: {
-    ...mapState(["loaded", "errorFromServer", "products"])
+    ...mapState(["loaded", "errorFromServer", "items"])
   },
   methods: {
-    ...mapActions(["getProducts"])
+    ...mapActions(["getitems"])
   },
   mounted: function() {
-    this.getProducts();
+    this.getitems();
   }
 }
 </script>
